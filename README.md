@@ -4,7 +4,7 @@
 npm i -S human2bytes
 ```
 
-(filesize.js)[https://github.com/avoidwork/filesize.js] inverter.
+[filesize.js](https://github.com/avoidwork/filesize.js) inverter.
 
 ### Example
 
