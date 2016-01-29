@@ -1,12 +1,11 @@
 # human2bytes
 
 > h2b('1K') → 1024
+> <br>[filesize.js](https://github.com/avoidwork/filesize.js) inverter.
 
 ```
 npm i -S human2bytes
 ```
-
-[filesize.js](https://github.com/avoidwork/filesize.js) inverter.
 
 ### Example
 
