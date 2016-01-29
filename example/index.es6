@@ -13,3 +13,6 @@ console.info('1.5 Kb  →  %s', h2b('1.5 Kb'))
 console.info('1       →  %s', h2b('1'))
 console.info('1B      →  %s', h2b('1B'))
 console.info('1 B     →  %s', h2b('1 B'))
+
+console.info('1KB 1   →  %s', h2b('1KB 1'))
+console.info('1M 1K   →  %s', h2b('1M 1K'))
