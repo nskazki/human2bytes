@@ -1,5 +1,7 @@
 # human2bytes
 
+> h2b('1K') → 1024
+
 ```
 npm i -S human2bytes
 ```
