@@ -1,6 +1,6 @@
 {
   "name": "human2bytes",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "h2b('1K') → 1024",
   "main": "src-build/index.js",
   "repository": {
