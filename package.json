@@ -1,0 +1,46 @@
+{
+  "name": "human2bytes",
+  "version": "1.0.0",
+  "description": "h2b('1K') → 1024",
+  "main": "src-build/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nskazki/human2bytes.git"
+  },
+  "keywords": [
+    "human",
+    "bytes",
+    "converter",
+    "filesize",
+    "size"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nskazki/human2bytes/issues"
+  },
+  "homepage": "https://github.com/nskazki/human2bytes#readme",
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "babel src --retain-lines --out-dir src-build",
+    "eslint": "eslint $(find . -not -path '*/*-build/*' -not -path '*/node_modules/*' -type f -name '*.es6')",
+    "mocha": "mocha test",
+    "test": "npm run eslint && npm run mocha",
+    "npmignore": "npm pack . > /dev/null && tar -tvf *.tgz && rm *.tgz"
+  },
+  "author": "nskazki@gmail.com",
+  "devDependencies": {
+    "babel-cli": "^6.4.5",
+    "babel-eslint": "^4.1.6",
+    "babel-plugin-add-module-exports": "^0.1.2",
+    "babel-plugin-espower": "^2.1.0",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-register": "^6.4.3",
+    "eslint": "1.10.1",
+    "eslint-plugin-mocha": "^1.1.0",
+    "mocha": "^2.3.4",
+    "power-assert": "^1.2.0"
+  },
+  "directories": {
+    "test": "test"
+  }
+}
