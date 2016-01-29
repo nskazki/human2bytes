@@ -14,13 +14,31 @@ export default function human2bytes(input) {
 
   let hbId = counter++
 
-  let size = chain(input)
+  return chain(input)
+    .thru(it => getChunks(it))
+    .tap(it => hbDebug(hbId, 'chunks', it))
+    .map(chunk => convertChunk(chunk))
+    .reduce((acc, part) => acc + part, 0)
+    .value()
+}
+
+function getChunks(input) {
+  let chunkRE = /\s*\d+\.?\d*\s*[a-zA-Z]*/g
+  return input.match(chunkRE)
+}
+
+function convertChunk(chunk, hbId) {
+  if (!isString(chunk))
+    throw new Error(`human2bytes: chunk must be a string!\
+      \n\t chunk: ${inpect(chunk)}`)
+
+  let size = chain(chunk)
     .thru(it => /^\s*(\d+\.?\d*)/.exec(it))
     .last()
     .toNumber()
     .value()
-  let suff = chain(input)
-    .thru(it => /^\s*\d+\.?\d*\s*(\w*)/.exec(it))
+  let suff = chain(chunk)
+    .thru(it => /^\s*\d+\.?\d*\s*([a-zA-Z]*)/.exec(it))
     .last()
     .value()
 
@@ -29,7 +47,7 @@ export default function human2bytes(input) {
     : suff
   let coef = coefMap[normSuff]
 
-  hbDebug(hbId, `input: ${input}\
+  hbDebug(hbId, `chunk: ${chunk}\
     \n\t size: ${size}\
     \n\t suff: ${suff}\
     \n\t normSuff: ${normSuff}\
@@ -37,7 +55,7 @@ export default function human2bytes(input) {
 
   if(!isNumber(coef))
     throw new Error(`human2bytes: unexpected size suffix!\
-      \n\t input: ${input}\
+      \n\t chunk: ${chunk}\
       \n\t size: ${size}\
       \n\t suff: ${suff}`)
 

@@ -179,3 +179,21 @@ describe('from unix bytes format (like ls -hl)', () => {
     assert(h2b(b2h(size, { unix: true })) === size)
   })
 })
+
+
+describe('sizes containing several pieces', () => {
+  it('1KB 1024B', () => {
+    let size = 1024 + 1024
+    assert(h2b('1KB 1024B') === size)
+  })
+
+  it('1 KB 1024 B', () => {
+    let size = 1024 + 1024
+    assert(h2b('1KB 1024B') === size)
+  })
+
+  it('1 KB 1024 1KB 1024 B 1K', () => {
+    let size = 1024 + 1024 + 1024 + 1024 + 1024
+    assert(h2b('1 KB 1024 1KB 1024 B 1K') === size)
+  })
+})
